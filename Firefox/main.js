@@ -133,10 +133,11 @@ function changeLikesCounter() {
 		observerLikes.disconnect();
 
 		let likes = document.querySelector('ytd-video-primary-info-renderer #top-level-buttons-computed > ytd-toggle-button-renderer:first-child > a > yt-formatted-string');
-		let rawLikes = likes.getAttribute('aria-label')?.replace(/[^\d]+$/g, '');
+		let rawLikes = likes.getAttribute('aria-label') ? likes.getAttribute('aria-label').replace(/[^\d]+$/g, '') : '';
 		if (!rawLikes) {
 			let likeButton = document.querySelector('#top-level-buttons-computed yt-icon-button > button');
-			let replacementText = likeButton.getAttribute('aria-label') ? likeButton.getAttribute('aria-label') : 'Like';
+			let buttonAria = likeButton.getAttribute('aria-label');
+			let replacementText = /\d+/.test(buttonAria) ? buttonAria.replace(/[^,.\d]/g, '') : buttonAria;
 			likes.innerText = replacementText;
 		} else {
 			likes.innerText = rawLikes;
@@ -693,7 +694,7 @@ function trimViews() {
 	const modifyViews = () => {
 		let views = document.querySelector('span.view-count:not(#redux-view-count)');
 		let reduxSpan = document.querySelector('#redux-view-count');
-		reduxSpan.textContent = views.textContent.replace(/[^\d+,.:\s].*/,'');
+		reduxSpan.textContent = views.textContent.replace(/[^,.\d\s]/g,'').trim();
 	};
 
 	modifyViews();
@@ -883,15 +884,17 @@ function updateDislikes() {
 	};
 	let observerLikes = new MutationObserver(() => {
 		let likes = document.querySelector('ytd-video-primary-info-renderer #top-level-buttons-computed > ytd-toggle-button-renderer:first-child > a > yt-formatted-string');
-		let likesCount = parseInt(likes.getAttribute('aria-label')?.replace(/[,.\s]/g, '').replace(/[^\d]+$/g, ''));
+		if (!likes.getAttribute('aria-label')) return;
+		let likesCount = parseInt(likes.getAttribute('aria-label').replace(/[,.\s]/g, '').replace(/[^\d]+$/g, ''));
 		let dislikesCount = dislikesSource.innerText.match(/(?<=\/).*/) ? dislikesSource.innerText.match(/(?<=\/).*/)[0].trim() : dislikesSource.innerText;
+		dislikesCount = dislikesCount.replace(/[,.\s]/g, '');
 		updateLikesBar(likesCount, dislikesCount);
 	});
 	observerLikes.observe(dislikesSource, observerConfig);
 
 	if (reduxSettings.showRawValues) {
 		let checkIfChanged = setInterval(() => {
-			let dislikes = document.querySelector('ytd-video-primary-info-renderer #top-level-buttons-computed > ytd-toggle-button-renderer:last-child > a > yt-formatted-string');
+			let dislikes = document.querySelector('ytd-video-primary-info-renderer #top-level-buttons-computed > ytd-toggle-button-renderer:nth-child(2) > a > yt-formatted-string');
 			let dislikesCount = dislikesSource.innerText.match(/(?<=\/).*/) ? dislikesSource.innerText.match(/(?<=\/).*/)[0].trim() : dislikesSource.innerText;
 			if (dislikes && dislikes.innerText.match(/^[\d+]/)) {
 				dislikes.innerText = formatNumber(dislikesCount.replace(/[,.\s]/g, ''));

@@ -70,7 +70,9 @@ const defaultSettings = {
 	"autoExpandPlaylists": false,
 	"autoExpandSubs": false,
 	"fixHomepage": true,
-	"compatibleDislikes": false
+	"compatibleDislikes": false,
+	"hideDislikes": false,
+	"hideDownload": false
 };
 
 initiate();
@@ -875,6 +877,9 @@ function addCustomStyles() {
 			font-size: 12px;
 			max-height: 24px;
 			height: 24px;
+		}
+		#top-level-buttons-computed ytd-download-button-renderer yt-formatted-string {
+			font-weight: normal;
 		}
 		`,
 		darkerRed: `
@@ -2200,6 +2205,16 @@ function addCustomStyles() {
 		`,
 		compatibleDislikes: `
 		.ryd-tooltip {
+			display: none !important;
+		}
+		`,
+		hideDislikes: `
+		.top-level-buttons.ytd-menu-renderer > ytd-toggle-button-renderer:last-child {
+			display: none !important;
+		}
+		`,
+		hideDownload: `
+		#top-level-buttons-computed ytd-download-button-renderer {
 			display: none !important;
 		}
 		`
