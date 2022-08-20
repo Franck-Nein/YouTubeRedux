@@ -423,7 +423,7 @@
                             <div class="subsettings-container">
                                 <label class="subsetting"><input type="checkbox" name="blackBars" class="settings" disabled>Use pillarboxing<div class="tooltip"><span class="tooltip-text-small">Adds black bars to the sides of low aspect ratio videos (e.g. 4:3).</span></div></label>
                             </div>
-                            <label><input type="checkbox" name="altVideoLayout" class="settings">Use alternative video page layout<div class="tooltip"><span class="tooltip-text">Positions video title and channel info above the player and rearranges buttons below the player. Best used with 'Use dark theme for playlists' option disabled.</span></div></label>
+                            <label><input type="checkbox" name="altVideoLayout" class="settings">Use alternative video page layout<div class="tooltip"><span class="tooltip-text">Positions video title and channel info above the player and rearranges buttons below the player. Best used with 'Use dark theme for playlists' option disabled. <br><span style="color:yellow">Rearranging buttons is currently not compatible with Return YouTube Dislike.</span></span></div></label>
                             <div class="subsettings-container">
                                 <label class="subsetting"><input type="checkbox" name="altVideoLayoutExtra" class="settings" disabled>Also rearrange likes/dislikes</label>
                             </div>
@@ -454,7 +454,6 @@
                             <label><input type="checkbox" name="oldIcons" class="settings">Restore old icons<div class="tooltip"><span class="tooltip-text">Changes current flat/hollow icons to their old inverted/filled version. Affects sidebar, video page, header icons and more.</span></div></label>
                             <label><input type="checkbox" name="extraChannel" class="settings">Extra channel page changes</label>
                             <label><input type="checkbox" name="channelListView" class="settings">Use list view for channel videos</label>
-                            <label><input type="checkbox" name="searchAlignLeft" class="settings">Align search bar to the left</label>
                             <label><input type="checkbox" name="squareAvatar" class="settings">Make own avatar square shaped</label>
                             <label><input type="checkbox" name="squareSubs" class="settings">Make subs avatars square shaped</label>
                             <label><input type="checkbox" name="squareSearch" class="settings">Use square avatars in search results</label>
@@ -489,7 +488,9 @@
                             <redux style="margin: 5px 0 5px 0;"></redux>
                             <label><input type="checkbox" name="showChangelog" class="settings">Show changelog on updates</label>
                             <label><input type="checkbox" name="rearrangeInfoRe" class="settings">Recreate old video page layout<div class="tooltip"><span class="tooltip-text">Unchecking this option will disable video page layout rearrangement caused by YouTube Redux - Polymer (modern/default) layout will be used.</span></div></label>
-                            <label><input type="checkbox" name="rearrangeInfoNew" class="settings">Recreate old video page layout (new) <div class="tooltip tooltip-warning"><span class="tooltip-text">EXPERIMENTAL/IN PROGRESS: this setting reverts a portion of video page changes that were recently distributed to certain users. Not everything has been restored yet: e.g. likes bar is missing, precise likes values aren't displayed. Expect this setting to be fully functional when YouTube rolls out these UI changes to all users.</span></div></label>
+                            <div class="subsettings-container">
+                                <label class="subsetting"><input type="checkbox" name="rearrangeInfoNew" class="settings">Apply to updated layout<div class="tooltip tooltip-warning"><span class="tooltip-text">EXPERIMENTAL/IN PROGRESS: this setting reverts a portion of video page changes that were recently distributed to certain users. Not everything has been restored yet: e.g. likes bar is missing, precise likes values aren't displayed. Expect this setting to be fully functional when YouTube rolls out these UI changes to all users.</span></div></label>
+                            </div>
                             <fieldset style="padding-top: 0; padding-bottom: 0; position: relative;"><legend>Logo</legend>
                                 <div class="logo-preview"><img src='' style="height: 100%; width: 100%;"></img></div>
                                 <div style="text-align: center; display:flex; justify-content: center; align-items: center; flex-wrap: wrap;">
@@ -538,6 +539,7 @@
                                 <br>• Shorts - removes the button from homepage and hides shorts in search results
                                 <br>• Chapters in description - removes the chapters section from video description
                                 <br>• Music in description - removes the music section from video description
+                                <br>• Heatmap - removes the heatmap from above the video progress bar
                             </span></div></legend>
                                 <div style="display: flex; width: 100%; justify-content: center; flex-wrap: wrap;" class="scrollable">
                                     <label class="toggle-label"><input type="checkbox" name="hideHomeAvatars" class="settings toggle"></input><span aria-label="Channel avatars on homepage"></span></label>
@@ -558,6 +560,7 @@
                                     <label class="toggle-label"><input type="checkbox" name="hideDislikes" class="settings toggle"></input><span aria-label="Dislikes"></span></label>
                                     <label class="toggle-label"><input type="checkbox" name="hideDownload" class="settings toggle"></input><span aria-label="Download"></span></label>
                                     <label class="toggle-label"><input type="checkbox" name="hideShorts" class="settings toggle"></input><span aria-label="Shorts"></span></label>
+                                    <label class="toggle-label"><input type="checkbox" name="hideHeatmap" class="settings toggle"></input><span aria-label="Heatmap"></span></label>
                                 </div>
                             </fieldset>
                         </div>
