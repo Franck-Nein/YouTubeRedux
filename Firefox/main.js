@@ -1046,7 +1046,7 @@ function hideShortsInSearch() {
 function redirectShorts() {
 	const currentLocation = window.location.href;
 	const redirectLocation = currentLocation.replace('/shorts/', '/watch?v=');
-	window.location.href = redirectLocation;
+	window.location.replace(redirectLocation);
 }
 
 function addClearHomepageEvent(selector, clearPlaylists) {
